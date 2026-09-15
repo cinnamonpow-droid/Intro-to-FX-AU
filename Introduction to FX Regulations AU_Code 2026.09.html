@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to FX Regulation in Australia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        #app-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #3498db;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .quiz-option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .quiz-option:hover {
+            background: #d5dbdb;
+        }
+        .quiz-option input {
+            margin-right: 10px;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+        .footer-notes {
+            font-size: 10px;
+            margin-top: 40px;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin: 20px 0;
+            color: #555;
+        }
+        
+        /* Flashcard Styles */
+        .instruction-text {
+            font-size: 0.9em;
+            color: #e67e22;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .flashcard {
+            background-color: transparent;
+            width: 100%;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        .flashcard-front {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .flashcard-back {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            transform: rotateY(180deg);
+            font-size: 0.95em;
+            border: 2px solid #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    <div class="progress-container" id="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- LAUNCH PAGE -->
+    <div id="screen-launch" class="screen active">
+        <h1>Welcome to Introduction to FX Regulation in Australia</h1>
+        <p>This course consists of 5 separate micro lessons that can be completed at different times for your convenience. You must complete all micro-modules and pass a final test before you will be issued with a certificate of completion (valid for 12 months from the date of completion). You can sit the test more than once and you may be able to claim 1.0 CPD units/hours/points upon completion of the course (consult your Compliance Manager or your professional body’s CPD guidelines for further information).</p>
+        <p><strong>Duration:</strong> 30 minutes</p>
+        
+        <h3>What you can expect to learn from this course</h3>
+        <ul>
+            <li>An overview of Australian regulators</li>
+            <li>A summary of regulators concerns and focus</li>
+            <li>Key regulatory documents</li>
+            <li>Examples of regulatory outcomes</li>
+            <li>A summary of key prohibitions</li>
+            <li>An overview of key obligations</li>
+            <li>A summary of the distinction between Retail and Wholesale</li>
+        </ul>
+
+        <button onclick="nextScreen('screen-mod1')">LAUNCH COURSE</button>
+
+        <div class="footer-notes">
+            <p><strong>Copyright:</strong> Copyright © MIWize. All rights reserved. No part of this learning material may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher.</p>
+            <p><strong>Disclaimer:</strong> This e-learning content should be used as a guide only and is not meant to replace any specific advice from your employer. Please be sure to take specialist advice if you are in doubt. MIWize, its employees and contractors disclaim all and any liability to any persons whatsoever in respect of anything done by any person in reliance, whether whole or in part, on this e-learning content.</p>
+        </div>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div id="screen-mod1" class="screen">
+        <h2>MICRO-MODULE 1: Overview of Australian FX Market Regulation</h2>
+        <p>There are three main regulators which oversee aspects of FX trading and the FX market in Australia. Click the cards below to learn about each one:</p>
+        
+        <div class="instruction-text">Tap cards to flip ↺</div>
+        <div class="flashcard-grid">
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">ASIC</div>
+                    <div class="flashcard-back">Australia’s markets and financial services conduct regulator. Issues Australian Financial Services Licences (AFSL).</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">RBA</div>
+                    <div class="flashcard-back">The central bank of Australia. Focuses on the stability of the financial system, with a particular connection to the FX market.</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">AUSTRAC</div>
+                    <div class="flashcard-back">Australia’s financial intelligence agency. Responsible for anti-money laundering, counter-terrorism financing, and reporting.</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>FX’s Image Problem: A Lack of Trust</h3>
+        <div class="quote">
+            "The foreign exchange industry has been suffering from a lack of trust. This lack of trust is evident both between participants in the market and, at least as importantly, between the public and the market."<br>
+            - Guy Debelle, Deputy Governor RBA, 15 June 2017
+        </div>
+        <button onclick="nextScreen('screen-mod1-quiz')">Next: Knowledge Check</button>
+    </div>
+
+    <div id="screen-mod1-quiz" class="screen">
+        <h2>Knowledge Check</h2>
+        <p>An Australian Financial Services Licence is issued by which of the following regulators who oversee aspects of FX trading in Australia?</p>
+        <div id="mod1-options">
+            <label class="quiz-option"><input type="radio" name="mod1" value="A"> ASIC</label>
+            <label class="quiz-option"><input type="radio" name="mod1" value="B"> RBA</label>
+            <label class="quiz-option"><input type="radio" name="mod1" value="C"> AUSTRAC</label>
+            <label class="quiz-option"><input type="radio" name="mod1" value="D"> The Exchange</label>
+        </div>
+        <button onclick="checkModAnswer('mod1', 'A', 'You are correct!', 'Unfortunately, that answer is incorrect.', 'screen-mod2')">Submit</button>
+        <div id="mod1-feedback" class="feedback"></div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div id="screen-mod2" class="screen">
+        <h2>MICRO-MODULE 2: Enforcement Outcomes</h2>
+        <p>Following its investigations, ASIC has implemented a series of substantial enforcement outcomes relating to FX. All of the five major Australian banks have agreed to wide-ranging Enforceable Undertakings.</p>
+        
+        <div class="instruction-text">Tap cards to review key enforcement cases ↺</div>
+        <div class="flashcard-grid">
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">ASIC Enforceable Undertakings</div>
+                    <div class="flashcard-back">Failings included: Disclosure of confidential client orders, trading inconsistent with orders, and attempts to unduly influence the market.</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">Insider Trading in FX</div>
+                    <div class="flashcard-back">In 2015, two margin FX traders were sentenced to jail (up to 7 years) for trading on non-public ABS statistical information, netting $7 million.</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">AUSTRAC Reporting Failure</div>
+                    <div class="flashcard-back">An FX business was fined $100k and its manager jailed for 10 months for avoiding standard significant cash transaction reports to AUSTRAC.</div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="nextScreen('screen-mod2-quiz')">Next: Knowledge Check</button>
+    </div>
+
+    <div id="screen-mod2-quiz" class="screen">
+        <h2>Knowledge Check</h2>
+        <p>Trading on non-public statistical information is permitted if the information was obtained from the ABS?</p>
+        <div id="mod2-options">
+            <label class="quiz-option"><input type="radio" name="mod2" value="True"> True</label>
+            <label class="quiz-option"><input type="radio" name="mod2" value="False"> False</label>
+        </div>
+        <button onclick="checkModAnswer('mod2', 'False', 'You are correct!', 'Unfortunately, that answer is incorrect.', 'screen-mod3')">Submit</button>
+        <div id="mod2-feedback" class="feedback"></div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div id="screen-mod3" class="screen">
+        <h2>MICRO-MODULE 3: Contraventions</h2>
+        <p>The Australian Corporations Act and the ASIC Act both have provisions which are relevant to conduct issues in the FX market. Contraventions can lead to administrative action and civil or criminal prosecution.</p>
+        
+        <div class="instruction-text">Tap cards to reveal prohibited behaviors ↺</div>
+        <div class="flashcard-grid">
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">Insider Trading</div>
+                    <div class="flashcard-back">Includes trading on inside info, tipping others to trade, disclosing confidential client order info, and receiving/acting on confidential info.</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">Market Manipulation</div>
+                    <div class="flashcard-back">Manipulating the price (particularly at key fixing times), false trading, market rigging, and trading with no change in beneficial ownership.</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">Misleading Conduct</div>
+                    <div class="flashcard-back">Making false or misleading statements and inducing someone to deal based on those statements.</div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="nextScreen('screen-mod3-quiz')">Next: Knowledge Check</button>
+    </div>
+
+    <div id="screen-mod3-quiz" class="screen">
+        <h2>Knowledge Check</h2>
+        <p>Contraventions of your obligations under your AFS Licence can lead to civil or criminal prosecution against the firm but not an individual.</p>
+        <div id="mod3-options">
+            <label class="quiz-option"><input type="radio" name="mod3" value="True"> True</label>
+            <label class="quiz-option"><input type="radio" name="mod3" value="False"> False</label>
+        </div>
+        <button onclick="checkModAnswer('mod3', 'False', 'You are correct! ASIC is responsible for the licensing and supervision of Market Participants in Australia.', 'Unfortunately, that answer is incorrect. The correct response is False.', 'screen-mod4')">Submit</button>
+        <div id="mod3-feedback" class="feedback"></div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div id="screen-mod4" class="screen">
+        <h2>MICRO-MODULE 4: Conduct and Behaviour</h2>
+        <p>In May 2017, ASIC released Report 525, “Promoting better behaviour: Spot FX”. It details concerns and sets clear guidance on behavior expectations.</p>
+        
+        <div class="instruction-text">Tap cards to compare Concerns vs. Expectations ↺</div>
+        <div class="flashcard-grid">
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">ASIC Concerns</div>
+                    <div class="flashcard-back">Lack of training, poor handling of confidential info, vague performance targets, and failing to detect or address misconduct.</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">ASIC Expectations</div>
+                    <div class="flashcard-back">Supervisors model expected standards, foster an environment to challenge inappropriate practices, and impose visible sanctions for misconduct.</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">FX Global Code</div>
+                    <div class="flashcard-back">Released in mid-2017, it is a key document setting out high-level regulatory expectations. All FX market individuals must understand it.</div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="nextScreen('screen-mod4-quiz')">Next: Knowledge Check</button>
+    </div>
+
+    <div id="screen-mod4-quiz" class="screen">
+        <h2>Knowledge Check</h2>
+        <p>ASIC expects that supervisors should be held to account where their behaviour has not been adequate.</p>
+        <div id="mod4-options">
+            <label class="quiz-option"><input type="radio" name="mod4" value="True"> True</label>
+            <label class="quiz-option"><input type="radio" name="mod4" value="False"> False</label>
+        </div>
+        <button onclick="checkModAnswer('mod4', 'True', 'You are correct!', 'Unfortunately, that answer is incorrect.', 'screen-mod5')">Submit</button>
+        <div id="mod4-feedback" class="feedback"></div>
+    </div>
+
+    <!-- MODULE 5 -->
+    <div id="screen-mod5" class="screen">
+        <h2>MICRO-MODULE 5: Rules and Regulations</h2>
+        <p>All designated services in financial products are covered by AUSTRAC’S requirements, including making a market and dealing with clients in FX and derivatives.</p>
+        
+        <div class="instruction-text">Tap cards to learn about Key Classifications ↺</div>
+        <div class="flashcard-grid">
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">AUSTRAC Obligations</div>
+                    <div class="flashcard-back">Implement a comprehensive AML/CTF Program, conduct customer due diligence, and report significant cash transactions (over $10k).</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">Retail vs. Wholesale</div>
+                    <div class="flashcard-back">All clients are considered Retail (requiring extra protections) unless they explicitly pass the 'Wholesale Test'.</div>
+                </div>
+            </div>
+            <div class="flashcard" onclick="toggleCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">The Wholesale Test</div>
+                    <div class="flashcard-back">Criteria include: Product price is $500k+, or client has certified net assets of at least $2.5m or income of $250k+ over the last two years.</div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="nextScreen('screen-mod5-quiz')">Next: Knowledge Check</button>
+    </div>
+
+    <div id="screen-mod5-quiz" class="screen">
+        <h2>Knowledge Check</h2>
+        <p>If you deal with clients in FX, as long as you are enrolled with AUSTRAC, there is no need to implement an AML/CTF Program.</p>
+        <div id="mod5-options">
+            <label class="quiz-option"><input type="radio" name="mod5" value="True"> True</label>
+            <label class="quiz-option"><input type="radio" name="mod5" value="False"> False</label>
+        </div>
+        <button onclick="checkModAnswer('mod5', 'False', 'You are correct!', 'Unfortunately, that answer is incorrect.', 'screen-final-intro')">Submit</button>
+        <div id="mod5-feedback" class="feedback"></div>
+    </div>
+
+    <!-- FINAL QUIZ INTRO -->
+    <div id="screen-final-intro" class="screen">
+        <h2>Introduction to FX Regulation in Australia – Final Knowledge Quiz</h2>
+        <h3>Quiz Instructions:</h3>
+        <ul>
+            <li>This Knowledge Quiz will test your understanding of FX Market Regulation in Australia.</li>
+            <li>You must achieve a pass mark of 80% or more to receive your certificate to download for completing this course.</li>
+            <li>There is no time limit to complete the quiz. You may only move to the next question after answering the current question.</li>
+            <li>If you do not pass, you can retake the quiz as many times as necessary. Questions will be re-shuffled.</li>
+            <li>Your certificate will be valid for 12 months from the completion date.</li>
+        </ul>
+        <button onclick="startFinalQuiz()">Start Final Quiz</button>
+    </div>
+
+    <!-- DYNAMIC FINAL QUIZ SCREEN -->
+    <div id="screen-final-quiz" class="screen">
+        <h2>Final Knowledge Quiz</h2>
+        <div id="final-quiz-container"></div>
+        <button id="final-quiz-submit" style="display:none;" onclick="submitFinalQuiz()">Submit Final Quiz</button>
+    </div>
+
+    <!-- COURSE COMPLETE - PASS -->
+    <div id="screen-complete-pass" class="screen">
+        <h2>Congratulations!</h2>
+        <p>Congratulations! You have passed the final knowledge quiz for the Introduction to FX Regulation in Australia course. You can now download the course completion certificate and email it to yourself. The certificate will be valid for a period of 12 months after which you can take a further MIWize Refresher course to update your skills and receive the necessary CPD points for the following 12-month period.</p>
+        <button onclick="location.reload()">Return to Start</button>
+    </div>
+
+    <!-- COURSE COMPLETE - FAIL -->
+    <div id="screen-complete-fail" class="screen">
+        <h2>Result</h2>
+        <p>Unfortunately you have not achieved a passing score of 80% or more. Please review the information contained within the micro-modules for this course before re-taking the knowledge quiz to achieve an 80% minimum pass mark in order to receive your certificate of completion for this course.</p>
+        <button onclick="startFinalQuiz()">Retake Quiz</button>
+    </div>
+
+</div>
+
+<script>
+    // Flashcard Toggle function
+    function toggleCard(element) {
+        element.classList.toggle('flipped');
+    }
+
+    // Progress Bar Management
+    const screens = [
+        'screen-launch', 'screen-mod1', 'screen-mod1-quiz', 'screen-mod2', 'screen-mod2-quiz', 
+        'screen-mod3', 'screen-mod3-quiz', 'screen-mod4', 'screen-mod4-quiz', 'screen-mod5', 
+        'screen-mod5-quiz', 'screen-final-intro', 'screen-final-quiz'
+    ];
+
+    function updateProgress(screenId) {
+        if(screenId === 'screen-launch') {
+            document.getElementById('progress-container').style.display = 'none';
+        } else {
+            document.getElementById('progress-container').style.display = 'block';
+            const index = screens.indexOf(screenId);
+            const percentage = Math.max(5, (index / (screens.length - 1)) * 100);
+            document.getElementById('progress-bar').style.width = percentage + '%';
+        }
+    }
+
+    function nextScreen(nextId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(nextId).classList.add('active');
+        updateProgress(nextId);
+        window.scrollTo(0, 0);
+    }
+
+    function checkModAnswer(modId, correctAnswer, correctText, incorrectText, nextId) {
+        const selected = document.querySelector(`input[name="${modId}"]:checked`);
+        const feedbackDiv = document.getElementById(`${modId}-feedback`);
+        
+        if (!selected) {
+            alert("Please select an answer.");
+            return;
+        }
+
+        if (selected.value === correctAnswer) {
+            feedbackDiv.innerHTML = correctText;
+            feedbackDiv.className = "feedback correct";
+            setTimeout(() => nextScreen(nextId), 2000);
+        } else {
+            feedbackDiv.innerHTML = incorrectText;
+            feedbackDiv.className = "feedback incorrect";
+        }
+    }
+
+    // Final Quiz Data
+    const finalQuizQuestions = [
+        {
+            q: "What are the potential consequences for an individual, of a breach of the Australian Corporations Act and the ASIC Act?",
+            opts: ["Criminal penalties", "Civil penalties", "Banning", "All of the above."],
+            ans: 3
+        },
+        {
+            q: "Which of the following Regulators are strictly involved in the regulation of the Australian FX Market?",
+            opts: ["ASIO, RBA and ASIC", "AUSTRAC, RBA and ASIC", "RBC and ASIC", "All of the above"],
+            ans: 1
+        },
+        {
+            q: "Under the ASIC Act, which of the following forms of trading conduct would be prohibited:",
+            opts: ["Price manipulation that is not at key fixing times", "Trading that is fair and orderly", "False trading", "All of the above", "A and C only"],
+            ans: 4
+        },
+        {
+            q: "Once surveillance systems are put in place, in which scenario would you need to review the systems?",
+            opts: ["When requested by ASIC", "Regularly to assess changes in business and emerging risks", "Every 5 years", "Whenever time allows"],
+            ans: 1
+        },
+        {
+            q: "True or False: It is OK to create a false or misleading appearance of active trading in derivatives on a derivatives market as long as your firm has authorised you to do so.",
+            opts: ["True", "False"],
+            ans: 1
+        }
+    ];
+
+    function startFinalQuiz() {
+        nextScreen('screen-final-quiz');
+        const container = document.getElementById('final-quiz-container');
+        container.innerHTML = '';
+        
+        // Shuffle questions
+        finalQuizQuestions.sort(() => Math.random() - 0.5);
+
+        finalQuizQuestions.forEach((item, index) => {
+            let html = `<div style="margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-radius: 8px;">
+                <p><strong>Question ${index + 1}:</strong> ${item.q}</p>`;
+            item.opts.forEach((opt, oIndex) => {
+                html += `<label class="quiz-option">
+                    <input type="radio" name="fq${index}" value="${oIndex}"> ${opt}
+                </label>`;
+            });
+            html += `</div>`;
+            container.innerHTML += html;
+        });
+        document.getElementById('final-quiz-submit').style.display = 'block';
+    }
+
+    function submitFinalQuiz() {
+        let score = 0;
+        let answeredAll = true;
+
+        finalQuizQuestions.forEach((item, index) => {
+            const selected = document.querySelector(`input[name="fq${index}"]:checked`);
+            if (!selected) {
+                answeredAll = false;
+            } else if (parseInt(selected.value) === item.ans) {
+                score++;
+            }
+        });
+
+        if (!answeredAll) {
+            alert("Please answer all questions before submitting.");
+            return;
+        }
+
+        const percentage = (score / finalQuizQuestions.length) * 100;
+        
+        if (percentage >= 80) {
+            nextScreen('screen-complete-pass');
+        } else {
+            nextScreen('screen-complete-fail');
+        }
+        document.getElementById('progress-container').style.display = 'none';
+        window.scrollTo(0, 0);
+    }
+</script>
+
+</body>
+</html>
